@@ -25,15 +25,12 @@ sealBtn.addEventListener('click', () => {
     });
     initCountdown();
     animateProgress();
-    // smooth-scroll into invitation
-    setTimeout(() => {
-      invitation.scrollIntoView({ behavior: 'smooth' });
-    }, 300);
-    // Hide hero from document flow after animation completes so user
-    // cannot scroll back up to it
+    // Hide hero from document flow first (after flora animation completes),
+    // then scroll so the layout shift doesn't cause a jump.
     setTimeout(() => {
       const hero = document.getElementById('hero');
       hero.style.display = 'none';
+      invitation.scrollIntoView({ behavior: 'smooth' });
     }, 1600);
   }, 900);
 });
