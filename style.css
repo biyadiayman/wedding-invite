@@ -1,0 +1,812 @@
+/* ======================================================
+   WEDDING INVITATION — LAMIS & AYMAN
+   Mobile-first, watercolor/botanical aesthetic
+====================================================== */
+
+/* ─── Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
+
+/* ─── CSS Variables ─── */
+:root {
+  --ivory: #fdf8f2;
+  --ivory-dark: #f5ede0;
+  --cream: #faf4ec;
+  --burgundy: #7c2238;
+  --burgundy-lt: #a63450;
+  --rose: #c8697e;
+  --green: #5a7a5a;
+  --green-lt: #7a9e7a;
+  --green-muted: #8faa8f;
+  --blush: #f0d5d5;
+  --taupe: #b59a8a;
+  --text-dark: #3a2a2a;
+  --text-mid: #6b4f4f;
+  --text-light: #9a7a7a;
+  --card-shadow: 0 8px 40px rgba(90, 40, 40, 0.09), 0 2px 8px rgba(90, 40, 40, 0.05);
+  --radius: 18px;
+  --transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--ivory);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Desktop Frame ─── */
+#page-frame {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media (min-width: 700px) {
+  body {
+    background: var(--ivory-dark);
+    padding: 40px 20px;
+  }
+
+  #page-frame {
+    background: var(--ivory);
+    border-radius: 28px;
+    box-shadow: 0 0 0 1px rgba(124, 34, 56, 0.08),
+      0 20px 80px rgba(60, 20, 20, 0.14),
+      inset 0 0 0 8px var(--ivory),
+      inset 0 0 0 9px rgba(124, 34, 56, 0.12);
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* decorative corner flourishes */
+  #page-frame::before,
+  #page-frame::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 Q30,5 50,20 Q30,15 10,30 Z' fill='%237c2238' opacity='0.15'/%3E%3Cpath d='M5,5 Q25,2 45,18 Q25,12 5,28 Z' fill='%235a7a5a' opacity='0.12'/%3E%3C/svg%3E") center/contain no-repeat;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  #page-frame::before {
+    top: 12px;
+    left: 12px;
+  }
+
+  #page-frame::after {
+    bottom: 12px;
+    right: 12px;
+    transform: rotate(180deg);
+  }
+}
+
+/* ─── HERO ─── */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ivory);
+}
+
+/* Hero SVG botanical layers */
+.hero-flora {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.hero-flora-left {
+  left: 0;
+  width: 52%;
+  transform-origin: left center;
+}
+
+.hero-flora-right {
+  right: 0;
+  width: 52%;
+  transform-origin: right center;
+}
+
+body.revealed .hero-flora-left {
+  transform: translateX(-120%);
+}
+
+body.revealed .hero-flora-right {
+  transform: translateX(120%);
+}
+
+/* Seal button */
+#seal-btn {
+  position: relative;
+  z-index: 5;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle at 38% 35%,
+      #b03050 0%, #7c2238 40%, #5c1428 75%, #3a0a18 100%);
+  box-shadow:
+    0 0 0 4px #a02848,
+    0 0 0 7px rgba(124, 34, 56, 0.25),
+    0 12px 40px rgba(60, 10, 20, 0.45),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 4px 8px rgba(255, 180, 180, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#seal-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 4px #a02848,
+    0 0 0 7px rgba(124, 34, 56, 0.35),
+    0 18px 50px rgba(60, 10, 20, 0.55),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 4px 8px rgba(255, 180, 180, 0.15);
+}
+
+#seal-btn:active {
+  transform: scale(0.97);
+}
+
+.seal-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(255, 235, 220, 0.95);
+  letter-spacing: 1px;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.seal-amp {
+  font-size: 14px;
+  color: rgba(255, 200, 200, 0.75);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.seal-ring {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 180, 160, 0.2);
+}
+
+.seal-hint {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+body.revealed .seal-hint {
+  display: none;
+}
+
+/* ─── Invitation Content ─── */
+#invitation {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+  padding: 0 20px 60px;
+}
+
+body.revealed #invitation {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* force reflow trick handled in JS */
+
+/* ─── Card ─── */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 36px 28px;
+  margin: 24px 0;
+  position: relative;
+  overflow: hidden;
+  animation: cardReveal 0.8s ease both;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--rose), var(--green-lt));
+  opacity: 0.6;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Section Labels ─── */
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blush), transparent);
+}
+
+/* ─── Headings ─── */
+h1,
+h2,
+h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: clamp(34px, 8vw, 48px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.names-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 9vw, 52px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--burgundy);
+  text-align: center;
+  line-height: 1.2;
+  margin: 12px 0 20px;
+}
+
+.names-amp {
+  display: block;
+  font-size: 0.6em;
+  font-style: normal;
+  color: var(--green);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  margin: 4px 0;
+}
+
+.welcome-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-mid);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ─── Divider ─── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--taupe);
+  font-size: 18px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blush) 50%, transparent);
+}
+
+/* ─── Info Card ─── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.info-item {
+  text-align: center;
+  padding: 20px 16px;
+  background: var(--cream);
+  border-radius: 12px;
+  border: 1px solid rgba(124, 34, 56, 0.06);
+}
+
+.info-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.info-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.info-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-dark);
+}
+
+.info-value-small {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 3px;
+}
+
+/* ─── Countdown ─── */
+.countdown-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.countdown-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--burgundy);
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.countdown-unit {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.progress-track {
+  height: 6px;
+  background: var(--blush);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green-lt) 0%, var(--rose) 50%, var(--burgundy) 100%);
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  color: var(--text-light);
+  letter-spacing: 1px;
+}
+
+/* ─── Location ─── */
+.map-frame {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid rgba(124, 34, 56, 0.08);
+  box-shadow: 0 4px 20px rgba(60, 20, 20, 0.1);
+  margin: 16px 0;
+  position: relative;
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border: none;
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--burgundy);
+  margin: 10px 0 4px;
+}
+
+.venue-address {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.btn-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 14px 24px;
+  width: 100%;
+  background: var(--burgundy);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  box-sizing: border-box;
+}
+
+.btn-map:hover {
+  background: var(--burgundy-lt);
+  transform: translateY(-1px);
+}
+
+/* ─── Timeline ─── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  margin-top: 16px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--blush), var(--rose), var(--blush));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -27px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--rose);
+  box-shadow: 0 0 0 3px rgba(200, 105, 126, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+}
+
+.timeline-time {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.timeline-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--text-dark);
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+.timeline-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ─── RSVP ─── */
+.rsvp-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text-mid);
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.rsvp-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid var(--blush);
+  border-radius: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--text-dark);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  margin-bottom: 16px;
+}
+
+.rsvp-input:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(200, 105, 126, 0.12);
+}
+
+.rsvp-input::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.rsvp-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-yes,
+.btn-no {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-lt) 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(90, 122, 90, 0.3);
+}
+
+.btn-yes:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(90, 122, 90, 0.4);
+}
+
+.btn-no {
+  background: var(--cream);
+  color: var(--text-mid);
+  border: 1.5px solid var(--blush);
+}
+
+.btn-no:hover {
+  border-color: var(--taupe);
+  transform: translateY(-1px);
+}
+
+/* ─── Modal ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 15, 15, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-box {
+  background: var(--ivory);
+  border-radius: 24px;
+  padding: 40px 32px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(40, 10, 10, 0.3);
+  transform: scale(0.88) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.modal-overlay.active .modal-box {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text-light);
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--text-dark);
+}
+
+.modal-pom {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--burgundy);
+  margin-bottom: 12px;
+}
+
+.modal-msg {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.btn-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--burgundy);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  text-decoration: none;
+}
+
+.btn-calendar:hover {
+  background: var(--burgundy-lt);
+  transform: translateY(-1px);
+}
+
+/* ─── Floating petals decoration ─── */
+.petal-float {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.35;
+  animation: floatPetal 8s ease-in-out infinite;
+}
+
+@keyframes floatPetal {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+  }
+}
+
+/* ─── Responsive tweaks ─── */
+@media (min-width: 500px) {
+  .rsvp-btns {
+    flex-direction: row;
+  }
+
+  .btn-yes,
+  .btn-no {
+    flex: 1;
+  }
+}
