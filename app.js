@@ -6,11 +6,34 @@
 const WEDDING_DATE = new Date('2026-05-03T16:00:00');
 const ENGAGEMENT_DATE = new Date('2025-05-16');
 
+/* ─── Music ─── */
+const bgMusic = document.getElementById('bg-music');
+const musicToggle = document.getElementById('music-toggle');
+const iconOn = document.getElementById('icon-sound-on');
+const iconOff = document.getElementById('icon-sound-off');
+
 /* ─── Video Hero ─── */
 const hero = document.getElementById('hero');
 const video = document.getElementById('hero-video');
 const overlay = document.getElementById('hero-overlay');
 const invitation = document.getElementById('invitation');
+
+function showMusicToggle() {
+  musicToggle.classList.add('visible');
+}
+
+function setMusicMuted(muted) {
+  bgMusic.muted = muted;
+  iconOn.style.display = muted ? 'none' : '';
+  iconOff.style.display = muted ? '' : 'none';
+  musicToggle.setAttribute('aria-label', muted ? 'Unmute music' : 'Mute music');
+  musicToggle.setAttribute('title', muted ? 'Unmute music' : 'Mute music');
+}
+
+musicToggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // don't trigger hero click
+  setMusicMuted(!bgMusic.muted);
+});
 
 let heroTriggered = false;
 
@@ -21,11 +44,21 @@ hero.addEventListener('click', () => {
   // 1. Fade out "Save the Date" overlay
   overlay.classList.add('fade-out');
 
-  // 2. Start video playback
-  video.play().catch(() => {
-    // If autoplay is blocked, try again on next interaction
+  // 2. Start video + music simultaneously
+  const videoPlay = video.play();
+  bgMusic.volume = 0.7;
+  bgMusic.play().then(() => {
+    showMusicToggle();
+  }).catch(() => {
+    // Music blocked — show button anyway so user can trigger it manually
+    showMusicToggle();
+  });
+
+  videoPlay.catch(() => {
+    // Video blocked — roll back
     heroTriggered = false;
     overlay.classList.remove('fade-out');
+    bgMusic.pause();
   });
 });
 

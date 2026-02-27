@@ -102,6 +102,76 @@ body.hero-finished {
   }
 }
 
+/* ─── Music toggle button ─── */
+#music-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  /* shown via JS once music starts */
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+#music-toggle.visible {
+  display: flex;
+}
+
+#music-toggle:hover {
+  background: rgba(255, 255, 255, 0.30);
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 28px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+#music-toggle:active {
+  transform: scale(0.95);
+}
+
+#music-toggle svg {
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+/* Gentle pulse ring to draw attention on first appear */
+#music-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  animation: musicPulse 2s ease-out 3;
+  opacity: 0;
+}
+
+@keyframes musicPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
 /* ─── HERO ─── */
 #hero {
   position: fixed;
