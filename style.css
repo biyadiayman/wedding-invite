@@ -46,6 +46,12 @@ body {
   color: var(--text-dark);
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: hidden;
+  /* locked while video hero is showing */
+}
+
+body.hero-finished {
+  overflow-y: auto;
 }
 
 /* ─── Desktop Frame ─── */
@@ -98,127 +104,112 @@ body {
 
 /* ─── HERO ─── */
 #hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 500px;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ivory);
-}
-
-/* Hero SVG botanical layers */
-.hero-flora {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.hero-flora-left {
-  left: 0;
-  width: 52%;
-  transform-origin: left center;
-}
-
-.hero-flora-right {
-  right: 0;
-  width: 52%;
-  transform-origin: right center;
-}
-
-body.revealed .hero-flora-left {
-  transform: translateX(-120%);
-}
-
-body.revealed .hero-flora-right {
-  transform: translateX(120%);
-}
-
-/* Seal button */
-#seal-btn {
-  position: relative;
-  z-index: 5;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: none;
+  background: #000;
   cursor: pointer;
-  background: radial-gradient(circle at 38% 35%,
-      #b03050 0%, #7c2238 40%, #5c1428 75%, #3a0a18 100%);
-  box-shadow:
-    0 0 0 4px #a02848,
-    0 0 0 7px rgba(124, 34, 56, 0.25),
-    0 12px 40px rgba(60, 10, 20, 0.45),
-    inset 0 -4px 12px rgba(0, 0, 0, 0.3),
-    inset 0 4px 8px rgba(255, 180, 180, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Full-screen video */
+#hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* "Save the Date" overlay */
+#hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 2px;
+  background: linear-gradient(160deg,
+      rgba(124, 34, 56, 0.55) 0%,
+      rgba(20, 10, 15, 0.72) 50%,
+      rgba(90, 122, 90, 0.40) 100%);
+  transition: opacity 1s ease;
 }
 
-#seal-btn:hover {
-  transform: scale(1.05);
-  box-shadow:
-    0 0 0 4px #a02848,
-    0 0 0 7px rgba(124, 34, 56, 0.35),
-    0 18px 50px rgba(60, 10, 20, 0.55),
-    inset 0 -4px 12px rgba(0, 0, 0, 0.3),
-    inset 0 4px 8px rgba(255, 180, 180, 0.15);
+#hero-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
-#seal-btn:active {
-  transform: scale(0.97);
+.hero-overlay-inner {
+  text-align: center;
+  padding: 0 32px;
+  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.seal-initials {
+@keyframes overlayEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-overlay-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(11px, 3vw, 14px);
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 220, 210, 0.85);
+  margin-bottom: 16px;
+}
+
+.hero-overlay-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: rgba(255, 235, 220, 0.95);
-  letter-spacing: 1px;
-  line-height: 1;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.seal-amp {
-  font-size: 14px;
-  color: rgba(255, 200, 200, 0.75);
-  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(68px, 18vw, 110px);
+  font-weight: 300;
   font-style: italic;
+  line-height: 0.95;
+  color: #fff;
+  text-shadow:
+    0 2px 24px rgba(0, 0, 0, 0.45),
+    0 0 80px rgba(124, 34, 56, 0.4);
+  margin-bottom: 32px;
 }
 
-.seal-ring {
-  position: absolute;
-  inset: 6px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 180, 160, 0.2);
-}
-
-.seal-hint {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+.hero-overlay-hint {
   font-family: 'Jost', sans-serif;
   font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--text-light);
+  font-weight: 400;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0.7;
+  color: rgba(255, 220, 210, 0.65);
+  animation: pulseHint 2.4s ease-in-out infinite;
 }
 
-body.revealed .seal-hint {
-  display: none;
+@keyframes pulseHint {
+
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Hero fade-out when video ends */
+#hero.hero-done {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
 }
 
 /* ─── Invitation Content ─── */
@@ -229,14 +220,6 @@ body.revealed .seal-hint {
   transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
   padding: 0 20px 60px;
 }
-
-body.revealed #invitation {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* force reflow trick handled in JS */
 
 /* ─── Card ─── */
 .card {
@@ -530,71 +513,6 @@ h3 {
   transform: translateY(-1px);
 }
 
-/* ─── Timeline ─── */
-.timeline {
-  position: relative;
-  padding-left: 32px;
-  margin-top: 16px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--blush), var(--rose), var(--blush));
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 28px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -27px;
-  top: 4px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--rose);
-  box-shadow: 0 0 0 3px rgba(200, 105, 126, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7px;
-}
-
-.timeline-time {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--rose);
-  text-transform: uppercase;
-  margin-bottom: 3px;
-}
-
-.timeline-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  color: var(--text-dark);
-  font-weight: 400;
-  margin-bottom: 3px;
-}
-
-.timeline-desc {
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
-  color: var(--text-light);
-  line-height: 1.5;
-}
 
 /* ─── RSVP ─── */
 .rsvp-intro {

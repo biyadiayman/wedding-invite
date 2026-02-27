@@ -4,35 +4,53 @@
 
 /* ─── Wedding date ─── */
 const WEDDING_DATE = new Date('2026-05-03T16:00:00');
-const ENGAGEMENT_DATE = new Date('2025-05-16');   // approx. start of countdown period
+const ENGAGEMENT_DATE = new Date('2025-05-16');
 
-/* ─── Seal reveal ─── */
-const sealBtn = document.getElementById('seal-btn');
+/* ─── Video Hero ─── */
+const hero = document.getElementById('hero');
+const video = document.getElementById('hero-video');
+const overlay = document.getElementById('hero-overlay');
 const invitation = document.getElementById('invitation');
 
-sealBtn.addEventListener('click', () => {
-  if (document.body.classList.contains('revealed')) return;
-  document.body.classList.add('revealed');
+let heroTriggered = false;
 
-  // Show invitation after flora slide-away transition
-  setTimeout(() => {
-    invitation.style.display = 'block';
+hero.addEventListener('click', () => {
+  if (heroTriggered) return;
+  heroTriggered = true;
+
+  // 1. Fade out "Save the Date" overlay
+  overlay.classList.add('fade-out');
+
+  // 2. Start video playback
+  video.play().catch(() => {
+    // If autoplay is blocked, try again on next interaction
+    heroTriggered = false;
+    overlay.classList.remove('fade-out');
+  });
+});
+
+// 3. When video finishes → fade hero out, reveal invitation content
+video.addEventListener('ended', () => {
+  // Unlock scroll immediately so users can start scrolling right away
+  document.body.classList.add('hero-finished');
+
+  // Reveal invitation content behind the fading hero
+  invitation.style.display = 'block';
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        invitation.style.opacity = '1';
-        invitation.style.transform = 'translateY(0)';
-      });
+      invitation.style.opacity = '1';
+      invitation.style.transform = 'translateY(0)';
     });
-    initCountdown();
-    animateProgress();
-    // Hide hero from document flow first (after flora animation completes),
-    // then scroll so the layout shift doesn't cause a jump.
-    setTimeout(() => {
-      const hero = document.getElementById('hero');
-      hero.style.display = 'none';
-      invitation.scrollIntoView({ behavior: 'smooth' });
-    }, 1600);
-  }, 900);
+  });
+  initCountdown();
+  animateProgress();
+
+  // Fade out hero and remove it after the CSS transition
+  hero.classList.add('hero-done');
+  setTimeout(() => {
+    hero.style.display = 'none';
+    invitation.scrollIntoView({ behavior: 'smooth' });
+  }, 1250);
 });
 
 /* ─── Countdown ─── */
@@ -55,7 +73,7 @@ function initCountdown() {
 function animateProgress() {
   const now = Date.now();
   const daysLeft = Math.max(0, WEDDING_DATE - now);
-  const totalDays = 70; // days from today (2026-02-22) to wedding (2026-05-03)
+  const totalDays = 70;
   const pct = Math.min(98, Math.max(2, ((totalDays - daysLeft / 86400000) / totalDays) * 100));
   setTimeout(() => {
     const fill = document.getElementById('progress-fill');
@@ -100,12 +118,6 @@ document.getElementById('btn-calendar').addEventListener('click', () => {
   const loc = encodeURIComponent('Les Andalous Cenia, Tunis');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`;
   window.open(url, '_blank');
-});
-
-/* ─── Subtle float animation on hero petals ─── */
-document.querySelectorAll('.petal-float').forEach((el, i) => {
-  el.style.animationDelay = (i * 1.3) + 's';
-  el.style.animationDuration = (6 + i * 1.5) + 's';
 });
 
 /* ─── Intersection Observer for card entrance ─── */
