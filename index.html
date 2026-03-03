@@ -78,18 +78,17 @@
 
       <!-- ─── DATE & TIME CARD ─── -->
       <article class="card" id="info">
-        <p class="section-label">Save the date</p>
+        <h2 class="section-title">When</h2>
+        <p class="section-subtitle">Save the date</p>
         <div class="info-grid">
           <div class="info-item">
-            <span class="info-icon">🗓</span>
             <span class="info-label">Date</span>
             <div class="info-value">3 Mai</div>
             <div class="info-value-small">2026</div>
           </div>
           <div class="info-item">
-            <span class="info-icon">🕔</span>
             <span class="info-label">Heure</span>
-            <div class="info-value">18 h 00</div>
+            <div class="info-value">16 h 00</div>
             <div class="info-value-small">Until midnight</div>
           </div>
         </div>
@@ -97,22 +96,30 @@
 
       <!-- ─── COUNTDOWN CARD ─── -->
       <article class="card" id="countdown">
-        <p class="section-label">Counting down</p>
-        <div class="countdown-label">Days until the wedding</div>
-        <div class="countdown-number" id="cd-number">—</div>
-        <div class="countdown-unit" id="cd-unit">days to go</div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-labels">
-          <span>Today</span>
-          <span>Wedding Day 💍</span>
+        <h2 class="section-title">Countdown</h2>
+        <p class="section-subtitle">Until 03 Mai 2026</p>
+        <div class="countdown-cols">
+          <div class="countdown-col">
+            <div class="countdown-num" id="cd-days">—</div>
+            <div class="countdown-lbl">Days</div>
+          </div>
+          <div class="countdown-sep"></div>
+          <div class="countdown-col">
+            <div class="countdown-num" id="cd-hours">—</div>
+            <div class="countdown-lbl">Hours</div>
+          </div>
+          <div class="countdown-sep"></div>
+          <div class="countdown-col">
+            <div class="countdown-num" id="cd-mins">—</div>
+            <div class="countdown-lbl">Minutes</div>
+          </div>
         </div>
       </article>
 
       <!-- ─── LOCATION CARD ─── -->
       <article class="card" id="location">
-        <p class="section-label">Venue</p>
+        <h2 class="section-title">Where</h2>
+        <p class="section-subtitle">Our venue</p>
         <div class="venue-name">Les Andalous Cenia</div>
         <div class="venue-address">Tunis, Tunisia</div>
         <div class="map-frame">
@@ -134,7 +141,8 @@
 
       <!-- ─── RSVP CARD ─── -->
       <article class="card" id="rsvp">
-        <p class="section-label">RSVP</p>
+        <h2 class="section-title">RSVP</h2>
+        <p class="section-subtitle">We'd love to know</p>
         <p class="rsvp-intro">
           We would be so honoured to have you celebrate<br />this special day with us.
         </p>

@@ -84,7 +84,6 @@ video.addEventListener('ended', () => {
     });
   });
   initCountdown();
-  animateProgress();
 
   // Fade out hero and remove it after the CSS transition
   hero.classList.add('hero-done');
@@ -96,19 +95,30 @@ video.addEventListener('ended', () => {
 
 /* ─── Countdown ─── */
 function initCountdown() {
+  const elDays = document.getElementById('cd-days');
+  const elHours = document.getElementById('cd-hours');
+  const elMins = document.getElementById('cd-mins');
+
   function update() {
     const now = new Date();
     const diff = WEDDING_DATE - now;
     if (diff <= 0) {
-      document.getElementById('cd-number').textContent = '0';
-      document.getElementById('cd-unit').textContent = 'The day has arrived!';
+      if (elDays) elDays.textContent = '0';
+      if (elHours) elHours.textContent = '0';
+      if (elMins) elMins.textContent = '0';
       return;
     }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    document.getElementById('cd-number').textContent = days;
+    const totalSec = Math.floor(diff / 1000);
+    const days = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const mins = Math.floor((totalSec % 3600) / 60);
+    if (elDays) elDays.textContent = days;
+    if (elHours) elHours.textContent = hours;
+    if (elMins) elMins.textContent = mins;
   }
+
   update();
-  setInterval(update, 60000);
+  setInterval(update, 30000);
 }
 
 function animateProgress() {
