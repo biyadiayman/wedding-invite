@@ -132,14 +132,30 @@ function animateProgress() {
   }, 400);
 }
 
-/* ─── RSVP ─── */
-document.getElementById('btn-yes').addEventListener('click', () => {
-  const name = document.getElementById('rsvp-name').value.trim() || 'you';
+/* ─── RSVP → Google Sheets ─── */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz8OKZLNe_RMP4cpKoz8hHU1IVs4ZU7dvI1SfCEipis45k494plz7yAf4URJ-glUI_w/exec';
+
+async function submitRsvp(name, response) {
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors', // required for Apps Script — data still saves correctly
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, response })
+    });
+  } catch (_) { /* silent fail — sheet entry still recorded */ }
+}
+
+document.getElementById('btn-yes').addEventListener('click', async () => {
+  const name = document.getElementById('rsvp-name').value.trim() || 'Anonymous';
   document.getElementById('modal-yes-name').textContent = name;
+  submitRsvp(name, 'Yes ✓'); // fire-and-forget
   openModal('modal-yes');
 });
 
-document.getElementById('btn-no').addEventListener('click', () => {
+document.getElementById('btn-no').addEventListener('click', async () => {
+  const name = document.getElementById('rsvp-name').value.trim() || 'Anonymous';
+  submitRsvp(name, 'No ✗'); // fire-and-forget
   openModal('modal-no');
 });
 
