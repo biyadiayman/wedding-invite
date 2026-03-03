@@ -395,6 +395,96 @@ h3 {
   margin: 4px 0;
 }
 
+/* ─── Welcome Video Card ─── */
+#welcome {
+  padding: 0;
+  min-height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* remove the top gradient bar on the welcome card */
+#welcome::before {
+  display: none;
+}
+
+#welcome-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+}
+
+.welcome-overlay {
+  position: relative;
+  z-index: 2;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 28px;
+  text-align: center;
+  background: linear-gradient(160deg,
+      rgba(124, 34, 56, 0.60) 0%,
+      rgba(20, 10, 15, 0.68) 50%,
+      rgba(90, 122, 90, 0.45) 100%);
+  border-radius: var(--radius);
+}
+
+.welcome-overlay-pre {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 220, 210, 0.85);
+  margin-bottom: 18px;
+  animation: overlayEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.welcome-overlay-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 13vw, 68px);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5), 0 0 60px rgba(124, 34, 56, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.welcome-overlay-amp {
+  font-size: 0.42em;
+  font-style: normal;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 215, 200, 0.80);
+  display: block;
+  margin: 2px 0;
+}
+
+.welcome-overlay-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 4.5vw, 22px);
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(255, 230, 215, 0.90);
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 200, 185, 0.35);
+  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
 .welcome-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;

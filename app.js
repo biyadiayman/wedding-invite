@@ -18,6 +18,14 @@ const video = document.getElementById('hero-video');
 const overlay = document.getElementById('hero-overlay');
 const invitation = document.getElementById('invitation');
 
+/* ─── Welcome card slow-motion video ─── */
+const welcomeVideo = document.getElementById('welcome-video');
+if (welcomeVideo) {
+  welcomeVideo.addEventListener('canplay', () => {
+    welcomeVideo.playbackRate = 0.4;
+  }, { once: true });
+}
+
 function showMusicToggle() {
   musicToggle.classList.add('visible');
 }
