@@ -147,17 +147,33 @@ async function submitRsvp(name, response) {
 }
 
 document.getElementById('btn-yes').addEventListener('click', async () => {
-  const name = document.getElementById('rsvp-name').value.trim() || 'Anonymous';
+  const nameEl = document.getElementById('rsvp-name');
+  const name = nameEl.value.trim();
+  if (!name) { shakeInput(nameEl); return; }
   document.getElementById('modal-yes-name').textContent = name;
-  submitRsvp(name, 'Yes ✓'); // fire-and-forget
+  submitRsvp(name, 'Yes ✓');
   openModal('modal-yes');
 });
 
 document.getElementById('btn-no').addEventListener('click', async () => {
-  const name = document.getElementById('rsvp-name').value.trim() || 'Anonymous';
-  submitRsvp(name, 'No ✗'); // fire-and-forget
+  const nameEl = document.getElementById('rsvp-name');
+  const name = nameEl.value.trim();
+  if (!name) { shakeInput(nameEl); return; }
+  submitRsvp(name, 'No ✗');
   openModal('modal-no');
 });
+
+function shakeInput(el) {
+  el.style.borderColor = 'var(--rose)';
+  el.style.animation = 'none';
+  requestAnimationFrame(() => {
+    el.style.animation = 'shakeField 0.4s ease';
+  });
+  el.addEventListener('input', () => {
+    el.style.borderColor = '';
+    el.style.animation = 'none';
+  }, { once: true });
+}
 
 function openModal(id) {
   document.getElementById(id).classList.add('active');
