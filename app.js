@@ -61,35 +61,6 @@ const I18N = {
     'modal.noTitle': 'We\'ll miss you dearly',
     'modal.noMsg': 'We completely understand and are sending you<br />all our love and warmth from a distance. 🌸<br />You will be in our hearts on that special day.',
     'modal.close': 'Close',
-  },
-  ar: {
-    'hero.title': 'احتفظوا\nبالموعد',
-    'hero.hint': 'اضغط في أي مكان للمشاهدة',
-    'info.title': 'متى',
-    'info.dateLabel': 'التاريخ',
-    'info.dateValue': '3 مايو',
-    'info.timeLabel': 'التوقيت',
-    'info.timeSub': 'حتى منتصف الليل',
-    'cd.title': 'العد التنازلي',
-    'cd.subtitle': 'حتى 03 مايو 2026',
-    'cd.days': 'أيام',
-    'cd.hours': 'ساعات',
-    'cd.mins': 'دقائق',
-    'cd.secs': 'ثواني',
-    'loc.title': 'أين',
-    'loc.subtitle': 'مكان الاحتفال',
-    'loc.mapBtn': 'عرض على خرائط جوجل',
-    'rsvp.subtitle': 'أخبرونا بردّكم',
-    'rsvp.intro': 'يسعدنا كثيراً أن نحتفل\nبهذا اليوم المميز بحضوركم.',
-    'rsvp.placeholder': 'اسمك…',
-    'rsvp.yes': 'نعم، سأكون هناك !',
-    'rsvp.no': 'لن أتمكن من الحضور',
-    'modal.yesTitle': 'لا صبر لنا على رؤيتكم !',
-    'modal.yesMsg': 'شكراً، <strong id="modal-yes-name">عزيزي</strong>، لمشاركتنا هذه اللحظة الجميلة !<br />حضوركم سيجعل يومنا أكثر سحراً. 🌸',
-    'modal.calendar': 'أضف إلى التقويم',
-    'modal.noTitle': 'ستشتاق إليكم قلوبنا',
-    'modal.noMsg': 'نتفهم تماماً ونبعث إليكم<br />بكل محبتنا ودفئنا من بعيد. 🌸<br />ستكونون في قلوبنا في ذلك اليوم الاستثنائي.',
-    'modal.close': 'إغلاق',
   }
 };
 
@@ -115,9 +86,8 @@ function applyLang(lang) {
     if (key in dict) el.placeholder = dict[key];
   });
 
-  // Update html lang + direction
+  // Update html lang attribute
   document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
 
   // Update button active states
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -132,20 +102,10 @@ function applyLang(lang) {
 (function initLang() {
   const saved = localStorage.getItem('lang');
   const browser = (navigator.language || navigator.userLanguage || '').toLowerCase();
-  let detected;
-  if (saved) {
-    detected = saved;
-  } else if (browser.startsWith('en')) {
-    detected = 'en';
-  } else if (browser.startsWith('ar')) {
-    detected = 'ar';
-  } else {
-    detected = 'fr';
-  }
+  const detected = saved || (browser.startsWith('en') ? 'en' : 'fr');
   applyLang(detected);
 
   document.getElementById('btn-lang-fr').addEventListener('click', () => applyLang('fr'));
-  document.getElementById('btn-lang-ar').addEventListener('click', () => applyLang('ar'));
   document.getElementById('btn-lang-en').addEventListener('click', () => applyLang('en'));
 })();
 
