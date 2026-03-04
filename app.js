@@ -2,6 +2,113 @@
    WEDDING INVITATION — LAMIS & AYMAN  |  app.js
 ====================================================== */
 
+/* ─── i18n ─── */
+const I18N = {
+  fr: {
+    'hero.title': 'Réservez\nla Date',
+    'hero.hint': 'Appuyez pour voir',
+    'info.title': 'Quand',
+    'info.dateLabel': 'Date',
+    'info.dateValue': '3 Mai',
+    'info.timeLabel': 'Heure',
+    'info.timeSub': "Jusqu'à minuit",
+    'cd.title': 'Compte à rebours',
+    'cd.subtitle': 'Jusqu\'au 03 Mai 2026',
+    'cd.days': 'Jours',
+    'cd.hours': 'Heures',
+    'cd.mins': 'Minutes',
+    'cd.secs': 'Secondes',
+    'loc.title': 'Où',
+    'loc.subtitle': 'Notre lieu de réception',
+    'loc.mapBtn': 'Voir sur Google Maps',
+    'rsvp.subtitle': 'Faites-nous signe',
+    'rsvp.intro': "Nous serions si honorés de vous avoir parmi nous\npour célébrer ce jour si spécial.",
+    'rsvp.placeholder': 'Votre prénom…',
+    'rsvp.yes': "Oui, j'y serai !",
+    'rsvp.no': 'Je ne pourrai pas venir',
+    'modal.yesTitle': 'On a hâte de vous voir !',
+    'modal.yesMsg': 'Merci, <strong id="modal-yes-name">cher(e) ami(e)</strong>, de fêter ça avec nous !<br />Votre présence rendra ce jour encore plus magique. 🌸',
+    'modal.calendar': 'Ajouter au calendrier',
+    'modal.noTitle': 'Vous nous manquerez',
+    'modal.noMsg': 'Nous comprenons tout à fait et vous envoyons<br />tout notre amour et notre chaleur de loin. 🌸<br />Vous serez dans nos cœurs en ce jour spécial.',
+    'modal.close': 'Fermer',
+  },
+  en: {
+    'hero.title': 'Save\nthe Date',
+    'hero.hint': 'Tap anywhere to watch',
+    'info.title': 'When',
+    'info.dateLabel': 'Date',
+    'info.dateValue': '3 May',
+    'info.timeLabel': 'Time',
+    'info.timeSub': 'Until midnight',
+    'cd.title': 'Countdown',
+    'cd.subtitle': 'Until 03 May 2026',
+    'cd.days': 'Days',
+    'cd.hours': 'Hours',
+    'cd.mins': 'Minutes',
+    'cd.secs': 'Seconds',
+    'loc.title': 'Where',
+    'loc.subtitle': 'Our venue',
+    'loc.mapBtn': 'View on Google Maps',
+    'rsvp.subtitle': "We'd love to know",
+    'rsvp.intro': "We would be so honoured to have you celebrate\nthis special day with us.",
+    'rsvp.placeholder': 'Your name…',
+    'rsvp.yes': "Yes, I'll be there",
+    'rsvp.no': "Can't make it",
+    'modal.yesTitle': "We can't wait to see you!",
+    'modal.yesMsg': 'Thank you, <strong id="modal-yes-name">dear friend</strong>, for celebrating with us!<br />Your presence will make our day even more magical. 🌸',
+    'modal.calendar': 'Add to Calendar',
+    'modal.noTitle': 'We\'ll miss you dearly',
+    'modal.noMsg': 'We completely understand and are sending you<br />all our love and warmth from a distance. 🌸<br />You will be in our hearts on that special day.',
+    'modal.close': 'Close',
+  }
+};
+
+function applyLang(lang) {
+  const dict = I18N[lang] || I18N.fr;
+
+  // Swap text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (key in dict) {
+      // Use innerHTML for keys that contain HTML tags (modals)
+      if (dict[key].includes('<') || dict[key].includes('\n')) {
+        el.innerHTML = dict[key].replace(/\n/g, '<br />');
+      } else {
+        el.textContent = dict[key];
+      }
+    }
+  });
+
+  // Swap placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (key in dict) el.placeholder = dict[key];
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+
+  // Update button active states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `btn-lang-${lang}`);
+  });
+
+  // Persist
+  localStorage.setItem('lang', lang);
+}
+
+// Auto-detect: saved preference → browser lang → default fr
+(function initLang() {
+  const saved = localStorage.getItem('lang');
+  const browser = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  const detected = saved || (browser.startsWith('en') ? 'en' : 'fr');
+  applyLang(detected);
+
+  document.getElementById('btn-lang-fr').addEventListener('click', () => applyLang('fr'));
+  document.getElementById('btn-lang-en').addEventListener('click', () => applyLang('en'));
+})();
+
 /* ─── Wedding date ─── */
 const WEDDING_DATE = new Date('2026-05-03T18:00:00');
 

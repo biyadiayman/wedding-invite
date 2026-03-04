@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lamis &amp; Ayman — Wedding Invitation</title>
-  <meta name="description" content="You are warmly invited to celebrate the wedding of Lamis and Ayman." />
+  <title>Lamis &amp; Ayman — Faire-part de Mariage</title>
+  <meta name="description" content="Vous êtes chaleureusement invités à célébrer le mariage de Lamis et Ayman." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,8 +26,8 @@
       <div id="hero-overlay">
         <div class="hero-overlay-inner">
           <p class="hero-overlay-subtitle">Lamis &amp; Ayman</p>
-          <h1 class="hero-overlay-title">Save<br />the Date</h1>
-          <p class="hero-overlay-hint">Tap anywhere to watch</p>
+          <h1 class="hero-overlay-title" data-i18n="hero.title">Réservez<br />la Date</h1>
+          <p class="hero-overlay-hint" data-i18n="hero.hint">Appuyez pour voir</p>
         </div>
       </div>
 
@@ -91,54 +91,54 @@
 
       <!-- ─── DATE & TIME CARD ─── -->
       <article class="card" id="info">
-        <h2 class="section-title">When</h2>
+        <h2 class="section-title" data-i18n="info.title">Quand</h2>
         <div class="info-grid">
           <div class="info-item">
-            <span class="info-label">Date</span>
-            <div class="info-value">3 Mai</div>
+            <span class="info-label" data-i18n="info.dateLabel">Date</span>
+            <div class="info-value" data-i18n="info.dateValue">3 Mai</div>
             <div class="info-value-small">2026</div>
           </div>
           <div class="info-item">
-            <span class="info-label">Heure</span>
+            <span class="info-label" data-i18n="info.timeLabel">Heure</span>
             <div class="info-value">18 h 00</div>
-            <div class="info-value-small">Until midnight</div>
+            <div class="info-value-small" data-i18n="info.timeSub">Jusqu'à minuit</div>
           </div>
         </div>
       </article>
 
       <!-- ─── COUNTDOWN CARD ─── -->
       <article class="card" id="countdown">
-        <h2 class="section-title">Countdown</h2>
-        <p class="section-subtitle">Until 03 Mai 2026</p>
+        <h2 class="section-title" data-i18n="cd.title">Compte à rebours</h2>
+        <p class="section-subtitle" data-i18n="cd.subtitle">Jusqu'au 03 Mai 2026</p>
         <div class="countdown-cols">
           <div class="countdown-col">
             <div class="countdown-num" id="cd-days">—</div>
-            <div class="countdown-lbl">Days</div>
+            <div class="countdown-lbl" data-i18n="cd.days">Jours</div>
           </div>
           <div class="countdown-sep"></div>
           <div class="countdown-col">
             <div class="countdown-num" id="cd-hours">—</div>
-            <div class="countdown-lbl">Hours</div>
+            <div class="countdown-lbl" data-i18n="cd.hours">Heures</div>
           </div>
           <div class="countdown-sep"></div>
           <div class="countdown-col">
             <div class="countdown-num" id="cd-mins">—</div>
-            <div class="countdown-lbl">Minutes</div>
+            <div class="countdown-lbl" data-i18n="cd.mins">Minutes</div>
           </div>
           <div class="countdown-sep"></div>
           <div class="countdown-col">
             <div class="countdown-num" id="cd-secs">—</div>
-            <div class="countdown-lbl">Seconds</div>
+            <div class="countdown-lbl" data-i18n="cd.secs">Secondes</div>
           </div>
         </div>
       </article>
 
       <!-- ─── LOCATION CARD ─── -->
       <article class="card" id="location">
-        <h2 class="section-title">Where</h2>
-        <p class="section-subtitle">Our venue</p>
+        <h2 class="section-title" data-i18n="loc.title">Où</h2>
+        <p class="section-subtitle" data-i18n="loc.subtitle">Notre lieu de réception</p>
         <div class="venue-name">Les Andalous Cenia</div>
-        <div class="venue-address">Tunis, Tunisia</div>
+        <div class="venue-address">Tunis, Tunisie</div>
         <div class="map-frame">
           <iframe title="Wedding Venue Map"
             src="https://www.openstreetmap.org/export/embed.html?bbox=10.1,36.7,10.3,36.9&layer=mapnik&marker=36.817,10.198"
@@ -151,7 +151,7 @@
             <path
               d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
           </svg>
-          View on Google Maps
+          <span data-i18n="loc.mapBtn">Voir sur Google Maps</span>
         </a>
       </article>
 
@@ -159,24 +159,25 @@
       <!-- ─── RSVP CARD ─── -->
       <article class="card" id="rsvp">
         <h2 class="section-title">RSVP</h2>
-        <p class="section-subtitle">We'd love to know</p>
-        <p class="rsvp-intro">
-          We would be so honoured to have you celebrate<br />this special day with us.
+        <p class="section-subtitle" data-i18n="rsvp.subtitle">Faites-nous signe</p>
+        <p class="rsvp-intro" data-i18n="rsvp.intro">
+          Nous serions si honorés de vous avoir parmi nous<br />pour célébrer ce jour si spécial.
         </p>
-        <input type="text" id="rsvp-name" class="rsvp-input" placeholder="Your name…" autocomplete="name" />
+        <input type="text" id="rsvp-name" class="rsvp-input" data-i18n-placeholder="rsvp.placeholder"
+          placeholder="Votre prénom…" autocomplete="name" />
         <div class="rsvp-btns">
           <button class="btn-yes" id="btn-yes">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
             </svg>
-            Yes, I'll be there
+            <span data-i18n="rsvp.yes">Oui, j'y serai !</span>
           </button>
           <button class="btn-no" id="btn-no">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" opacity="0.6">
               <path
                 d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
             </svg>
-            Can't make it
+            <span data-i18n="rsvp.no">Je ne pourrai pas venir</span>
           </button>
         </div>
       </article>
@@ -197,13 +198,13 @@
         <img src="assets/pomeranian-happy.png" alt="Happy Pomeranian" />
       </div>
 
-      <div class="modal-title">We can't wait to see you!</div>
-      <p class="modal-msg">
-        Thank you, <strong id="modal-yes-name">dear friend</strong>, for celebrating with us!<br />
-        Your presence will make our day even more magical. 🌸
+      <div class="modal-title" data-i18n="modal.yesTitle">On a hâte de vous voir !</div>
+      <p class="modal-msg" data-i18n="modal.yesMsg">
+        Merci, <strong id="modal-yes-name">cher(e) ami(e)</strong>, de fêter ça avec nous !<br />
+        Votre présence rendra ce jour encore plus magique. 🌸
       </p>
       <a class="btn-calendar" id="btn-calendar" href="#" target="_blank" rel="noopener">
-        📅 &nbsp;Add to Calendar
+        📅 &nbsp;<span data-i18n="modal.calendar">Ajouter au calendrier</span>
       </a>
     </div>
   </div>
@@ -220,17 +221,23 @@
         <img src="assets/pomeranian-sad.png" alt="Sad Pomeranian" />
       </div>
 
-      <div class="modal-title">We'll miss you dearly</div>
-      <p class="modal-msg">
-        We completely understand and are sending you<br />
-        all our love and warmth from a distance. 🌸<br />
-        You will be in our hearts on that special day.
+      <div class="modal-title" data-i18n="modal.noTitle">Vous nous manquerez</div>
+      <p class="modal-msg" data-i18n="modal.noMsg">
+        Nous comprenons tout à fait et vous envoyons<br />
+        tout notre amour et notre chaleur de loin. 🌸<br />
+        Vous serez dans nos cœurs en ce jour spécial.
       </p>
       <button class="btn-calendar"
         onclick="document.getElementById('modal-no').classList.remove('active');document.body.style.overflow='';">
-        Close
+        <span data-i18n="modal.close">Fermer</span>
       </button>
     </div>
+  </div>
+
+  <!-- ─── Language Switcher ─── -->
+  <div id="lang-switcher">
+    <button id="btn-lang-fr" class="lang-btn" aria-label="Français">FR</button>
+    <button id="btn-lang-en" class="lang-btn" aria-label="English">EN</button>
   </div>
 
   <script src="app.js"></script>
