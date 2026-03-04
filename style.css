@@ -423,6 +423,7 @@ h3 {
   object-fit: cover;
   display: block;
   border-radius: 0;
+  opacity: 0.72;
 }
 
 .welcome-overlay {
@@ -433,25 +434,24 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 48px 28px;
+  justify-content: flex-end;
+  padding: 0 28px 48px;
   text-align: center;
+  /* Dark at the bottom, grows lighter/transparent toward the top */
   background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.30) 0%,
-      rgba(0, 0, 0, 0.55) 60%,
-      rgba(0, 0, 0, 0.35) 100%);
+      rgba(0, 0, 0, 0.00) 0%,
+      rgba(0, 0, 0, 0.10) 40%,
+      rgba(0, 0, 0, 0.55) 70%,
+      rgba(0, 0, 0, 0.80) 100%);
   border-radius: 0;
 }
 
-.welcome-overlay-pre {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(255, 220, 210, 0.85);
-  margin-bottom: 18px;
-  animation: overlayEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Content group: names + divider + date */
+.welcome-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .welcome-overlay-names {
@@ -463,34 +463,89 @@ h3 {
   line-height: 1.1;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5), 0 0 60px rgba(124, 34, 56, 0.4);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 4px;
-  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  gap: 10px;
 }
 
 .welcome-overlay-amp {
-  font-size: 0.42em;
-  font-style: normal;
-  font-family: 'Jost', sans-serif;
+  font-size: 0.55em;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: rgba(255, 215, 200, 0.80);
-  display: block;
-  margin: 2px 0;
+  color: rgba(255, 215, 200, 0.90);
+  display: inline-block;
+}
+
+/* Elegant horizontal rule with center diamond */
+.welcome-overlay-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 260px;
+  margin: 16px auto 14px;
+  animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.welcome-overlay-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 210, 188, 0.50);
+}
+
+.welcome-overlay-divider-diamond {
+  font-size: 10px;
+  color: rgba(255, 210, 188, 0.80);
+  line-height: 1;
 }
 
 .welcome-overlay-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 4.5vw, 22px);
+  font-size: clamp(15px, 4vw, 20px);
   font-weight: 300;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   color: rgba(255, 230, 215, 0.90);
-  margin-top: 20px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 200, 185, 0.35);
   animation: overlayEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+/* RSVP scroll hint */
+.welcome-overlay-rsvp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 28px;
+  animation: overlayEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+.welcome-rsvp-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  color: rgba(255, 220, 210, 0.75);
+}
+
+.welcome-rsvp-arrow {
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 220, 210, 0.70);
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
 }
 
 .welcome-text {
