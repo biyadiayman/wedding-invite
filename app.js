@@ -4,7 +4,6 @@
 
 /* ─── Wedding date ─── */
 const WEDDING_DATE = new Date('2026-05-03T18:00:00');
-const ENGAGEMENT_DATE = new Date('2025-05-16');
 
 /* ─── Music ─── */
 const bgMusic = document.getElementById('bg-music');
@@ -98,6 +97,7 @@ function initCountdown() {
   const elDays = document.getElementById('cd-days');
   const elHours = document.getElementById('cd-hours');
   const elMins = document.getElementById('cd-mins');
+  const elSecs = document.getElementById('cd-secs');
 
   function update() {
     const now = new Date();
@@ -112,13 +112,15 @@ function initCountdown() {
     const days = Math.floor(totalSec / 86400);
     const hours = Math.floor((totalSec % 86400) / 3600);
     const mins = Math.floor((totalSec % 3600) / 60);
+    const secs = totalSec % 60;
     if (elDays) elDays.textContent = days;
-    if (elHours) elHours.textContent = hours;
-    if (elMins) elMins.textContent = mins;
+    if (elHours) elHours.textContent = String(hours).padStart(2, '0');
+    if (elMins) elMins.textContent = String(mins).padStart(2, '0');
+    if (elSecs) elSecs.textContent = String(secs).padStart(2, '0');
   }
 
   update();
-  setInterval(update, 30000);
+  setInterval(update, 1000);
 }
 
 function animateProgress() {
