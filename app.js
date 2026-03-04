@@ -3,7 +3,7 @@
 ====================================================== */
 
 /* ─── Wedding date ─── */
-const WEDDING_DATE = new Date('2026-05-03T16:00:00');
+const WEDDING_DATE = new Date('2026-05-03T18:00:00');
 const ENGAGEMENT_DATE = new Date('2025-05-16');
 
 /* ─── Music ─── */
@@ -195,8 +195,8 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 
 /* ─── Add to Calendar ─── */
 document.getElementById('btn-calendar').addEventListener('click', () => {
-  const start = '20260516T170000';
-  const end = '20260517T020000';
+  const start = '20260503T180000';
+  const end = '20260503T023000';
   const title = encodeURIComponent("Lamis & Ayman's Wedding");
   const loc = encodeURIComponent('Les Andalous Cenia, Tunis');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`;
