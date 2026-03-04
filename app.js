@@ -99,13 +99,16 @@ function initCountdown() {
   const elMins = document.getElementById('cd-mins');
   const elSecs = document.getElementById('cd-secs');
 
+  let timer;
   function update() {
     const now = new Date();
     const diff = WEDDING_DATE - now;
     if (diff <= 0) {
       if (elDays) elDays.textContent = '0';
-      if (elHours) elHours.textContent = '0';
-      if (elMins) elMins.textContent = '0';
+      if (elHours) elHours.textContent = '00';
+      if (elMins) elMins.textContent = '00';
+      if (elSecs) elSecs.textContent = '00';
+      clearInterval(timer);
       return;
     }
     const totalSec = Math.floor(diff / 1000);
@@ -120,7 +123,7 @@ function initCountdown() {
   }
 
   update();
-  setInterval(update, 1000);
+  timer = setInterval(update, 1000);
 }
 
 function animateProgress() {
