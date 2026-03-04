@@ -3,7 +3,7 @@
 ====================================================== */
 
 /* ─── Wedding date ─── */
-const WEDDING_DATE = new Date('2026-05-03T16:00:00');
+const WEDDING_DATE = new Date('2026-05-03T18:00:00');
 const ENGAGEMENT_DATE = new Date('2025-05-16');
 
 /* ─── Music ─── */
