@@ -18,19 +18,19 @@ const I18N = {
     'cd.hours': 'Heures',
     'cd.mins': 'Minutes',
     'cd.secs': 'Secondes',
-    'loc.title': 'Où',
+    'loc.title': 'Lieu',
     'loc.subtitle': 'Notre lieu de réception',
     'loc.mapBtn': 'Voir sur Google Maps',
     'rsvp.subtitle': 'Faites-nous signe',
-    'rsvp.intro': "Nous serions si honorés de vous avoir parmi nous\npour célébrer ce jour si spécial.",
-    'rsvp.placeholder': 'Votre prénom…',
+    'rsvp.intro': "Nous serions si honorés de t'avoir parmi nous\npour célébrer ce jour si spécial.",
+    'rsvp.placeholder': 'Ton nom…',
     'rsvp.yes': "Oui, j'y serai !",
     'rsvp.no': 'Je ne pourrai pas venir',
-    'modal.yesTitle': 'On a hâte de vous voir !',
-    'modal.yesMsg': 'Merci, <strong id="modal-yes-name">cher(e) ami(e)</strong>, de fêter ça avec nous !<br />Votre présence rendra ce jour encore plus magique. 🌸',
+    'modal.yesTitle': 'On a hâte de te voir !',
+    'modal.yesMsg': 'Merci, <strong id="modal-yes-name">cher(e) ami(e)</strong>, de fêter ça avec nous !<br />Ta présence rendra ce jour encore plus magique. 🌸',
     'modal.calendar': 'Ajouter au calendrier',
-    'modal.noTitle': 'Vous nous manquerez',
-    'modal.noMsg': 'Nous comprenons tout à fait et vous envoyons<br />tout notre amour et notre chaleur de loin. 🌸<br />Vous serez dans nos cœurs en ce jour spécial.',
+    'modal.noTitle': 'Tu nous manqueras',
+    'modal.noMsg': 'Nous comprenons tout à fait et t\'envoyons<br />tout notre amour et notre chaleur de loin. 🌸<br />Tu seras dans nos cœurs en ce jour spécial.',
     'modal.close': 'Fermer',
   },
   en: {
@@ -308,7 +308,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 /* ─── Add to Calendar ─── */
 document.getElementById('btn-calendar').addEventListener('click', () => {
   const start = '20260503T180000';
-  const end = '20260503T023000';
+  const end = '20260504T000000';
   const title = encodeURIComponent("Lamis & Ayman's Wedding");
   const loc = encodeURIComponent('Les Andalous Cenia, Tunis');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`;
