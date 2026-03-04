@@ -565,6 +565,8 @@ h3 {
   align-items: center;
   gap: 4px;
   margin-top: 28px;
+  text-decoration: none;
+  cursor: pointer;
   animation: overlayEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
