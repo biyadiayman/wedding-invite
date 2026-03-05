@@ -793,6 +793,10 @@ h3 {
   padding: 12px 8px;
 }
 
+#bonne-nuit .rsvp-intro {
+  margin-bottom: 0;
+}
+
 /* ─── RSVP ─── */
 .rsvp-intro {
   font-family: 'Cormorant Garamond', serif;
