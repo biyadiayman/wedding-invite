@@ -31,8 +31,9 @@ const I18N = {
     'modal.yesMsg': 'Merci, <strong id="modal-yes-name">cher(e) ami(e)</strong>, de fêter ça avec nous !<br />Ta présence rendra ce jour encore plus magique. 🌸',
     'modal.calendar': 'Ajouter au calendrier',
     'modal.noTitle': 'Tu nous manqueras',
-    'modal.noMsg': 'Nous comprenons tout à fait et t\'envoyons<br />tout notre amour et notre chaleur de loin. 🌸<br />Tu seras dans nos cœurs en ce jour spécial.',
+    'modal.noMsg': 'Nous comprenons tout à fait et t\'envoyons<br />tout notre amour de loin. 🌸<br />Tu seras dans nos cœurs en ce jour spécial.',
     'modal.close': 'Fermer',
+    'note.bonneNuit': 'Bonne nuit à nos enfants 🌙',
   },
   en: {
     'hero.title': 'Save\nthe Date',
@@ -61,8 +62,9 @@ const I18N = {
     'modal.yesMsg': 'Thank you, <strong id="modal-yes-name">dear friend</strong>, for celebrating with us!<br />Your presence will make our day even more magical. 🌸',
     'modal.calendar': 'Add to Calendar',
     'modal.noTitle': 'We\'ll miss you dearly',
-    'modal.noMsg': 'We completely understand and are sending you<br />all our love and warmth from a distance. 🌸<br />You will be in our hearts on that special day.',
+    'modal.noMsg': 'We completely understand and are sending you<br />all our love from a distance. 🌸<br />You will be in our hearts on that special day.',
     'modal.close': 'Close',
+    'note.bonneNuit': 'Good night to our little ones 🌙',
   }
 };
 

@@ -788,6 +788,11 @@ h3 {
 }
 
 
+/* ─── Bonne Nuit Note ─── */
+#bonne-nuit {
+  padding: 12px 8px;
+}
+
 /* ─── RSVP ─── */
 .rsvp-intro {
   font-family: 'Cormorant Garamond', serif;
