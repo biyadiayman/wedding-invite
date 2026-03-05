@@ -24,7 +24,7 @@ const I18N = {
     'rsvp.title': 'Merci de confirmer',
     'rsvp.subtitle': 'Faites-nous signe',
     'rsvp.intro': "On espère que tu pourras être avec nous pour fêter ce jour spécial.",
-    'rsvp.placeholder': 'Ton Nom…',
+    'rsvp.placeholder': 'Nom…',
     'rsvp.yes': "Oui, j'y serai !",
     'rsvp.no': 'Je ne pourrai pas venir',
     'modal.yesTitle': 'On a hâte de te voir !',
